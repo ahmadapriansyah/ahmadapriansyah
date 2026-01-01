@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Laporan Gudang - Gudang Management</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link id="pagestyle" href="{{ url_for('static', filename='css/argon-dashboard.css') }}" rel="stylesheet" />
+</head>
+
+<body class="g-sidenav-show bg-gray-100">
+  <div class="min-height-300 bg-primary position-absolute w-100"></div>
+  
+  <main class="main-content position-relative border-radius-lg">
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0 d-flex justify-content-between">
+              <h6>Riwayat Transaksi Barang (Masuk & Keluar)</h6>
+              <div>
+                <a href="{{ url_for('main.download_laporan') }}" class="btn btn-sm btn-success">
+                   <i class="fas fa-download me-2"></i> Download PDF
+                </a>
+                <a href="{{ url_for('main.index') }}" class="btn btn-sm btn-secondary">Kembali</a>
+              </div>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID Barang</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama Barang</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Supplier</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for l in data %}
+                    <tr>
+                      <td>
+                        <div class="d-flex px-3 py-1">
+                          <p class="text-xs font-weight-bold mb-0">{{ l.tanggal.strftime('%d %b %Y, %H:%M') }}</p>
+                        </div>
+                      </td>
+                     <td>
+  <span class="text-xs font-weight-bold">
+    {{ l.kode_barang if l.kode_barang else '00-00-00' }}
+  </span>
+</td>
+                      <td><p class="text-xs font-weight-bold mb-0">{{ l.nama_barang }}</p></td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">{{ l.supplier }}</span>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        {% if l.status == 'Keluar' %}
+                        <span class="badge badge-sm bg-gradient-danger">KELUAR</span>
+                        {% else %}
+                        <span class="badge badge-sm bg-gradient-success">MASUK</span>
+                        {% endif %}
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">{{ l.jumlah }} Unit</span>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card mt-4 no-print">
+            <div class="card-body">
+               <h6>Ringkasan Laporan</h6>
+               <p class="text-sm">Total Transaksi Tercatat: <b>{{ data|length }}</b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <style>
+    @media print {
+      .no-print, .btn, .sidenav {
+        display: none !important;
+      }
+      .main-content {
+        margin-left: 0 !important;
+      }
+    }
+  </style>
+</body>
+</html>

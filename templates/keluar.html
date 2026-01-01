@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Barang Keluar - Gudang</title>
+  <link id="pagestyle" href="{{ url_for('static', filename='css/argon-dashboard.css') }}" rel="stylesheet" />
+</head>
+<body class="bg-gray-100">
+  <div class="container-fluid py-4">
+    <div class="card shadow col-lg-10 mx-auto">
+      <div class="card-header bg-danger text-white"><h6>List Barang Keluar</h6></div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Barang</th>
+              <th>Sisa Stok</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for b in data %}
+            <tr>
+              <td>{{ b.nama_barang }}</td>
+              <td>{{ b.stok }} Unit</td>
+              <td>
+                <form action="{{ url_for('main.keluar') }}" method="POST" class="d-flex">
+                  <input type="hidden" name="nama_barang" value="{{ b.nama_barang }}">
+                  
+                  <div class="input-group input-group-sm">
+                    <input type="number" name="stok" class="form-control" placeholder="Jml" required style="width: 70px;">
+                    <button type="submit" class="btn btn-danger btn-sm mb-0">
+                      <i class="fas fa-minus me-1"></i> Keluar
+                    </button>
+                  </div>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <a href="{{ url_for('main.index') }}" class="btn btn-secondary mt-3">Kembali</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

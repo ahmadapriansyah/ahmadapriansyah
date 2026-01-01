@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gudang Arsip - Ahmad</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/argon-dashboard.css') }}">
+</head>
+<body class="bg-gray-100">
+    <div class="container-fluid py-4">
+        <div class="card shadow">
+            <div class="card-header border-0">
+                <h3 class="mb-0 text-danger">Barang Non-Aktif (Arsip)</h3>
+                <p class="text-sm">Barang di bawah ini tidak muncul di Dashboard maupun menu Transaksi.</p>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Nama Barang</th>
+                            <th>Stok Terakhir</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in data %}
+                        <tr>
+                            <td>{{ item.nama_barang }}</td>
+                            <td>{{ item.stok }}</td>
+                            <td>
+                                <a href="{{ url_for('main.restore_barang', id=item.id) }}" class="btn btn-sm btn-success">
+                                    Aktifkan Lagi
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+                <a href="{{ url_for('main.tables') }}" class="btn btn-primary">Kembali ke Tabel Utama</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

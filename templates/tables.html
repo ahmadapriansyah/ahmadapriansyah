@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tables - Gudang</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/argon-dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <style>
+        .search-container {
+            max-width: 300px;
+            margin-right: 15px;
+        }
+        /* PERBAIKAN TOTAL BIAR SEJAJAR DAN RAPI */
+        .table td, .table th {
+            font-weight: 400 !important; 
+            color: #525f7f !important;
+            vertical-align: middle !important;
+            padding: 1rem 0.75rem !important; /* Padding pas biar nggak sesek */
+            text-align: left !important; /* PAKSA RATA KIRI BIAR LURUS SEMUA */
+            font-size: 0.875rem !important; /* Font size standar Argon biar nggak kekecilan */
+        }
+        
+        /* Header Tabel */
+        .thead-light th {
+            background-color: #f6f9fc !important;
+            color: #8898aa !important;
+            border-bottom: 1px solid #e9ecef !important;
+        }
+
+        /* Nama Barang - Tetep Hitam & Tipis */
+        .nama-barang { color: #32325d !important; }
+
+        /* Stok - Merah kalau dikit, Hitam kalau normal */
+        .stok-rendah { color: #f5365c !important; font-weight: 600 !important; }
+        .stok-normal { color: #32325d !important; }
+
+        /* Status Aktif dengan centang hijau */
+        .status-aktif { color: #2dce89 !important; font-weight: 500 !important; }
+        
+        /* Kolom Aksi tetep rata kanan biar manis di pinggir */
+        .text-right { text-align: right !important; }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container-fluid py-4">
+    <div class="card shadow">
+        <div class="card-header border-0 bg-white">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="mb-0 text-dark" style="font-weight: 600;">Tabel Inventaris</h3>
+                </div>
+                <div class="col-auto d-flex align-items-center">
+                    <div class="search-container mr-3" style="max-width: 250px;">
+                        <div class="input-group input-group-sm input-group-alternative mb-0"> 
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            </div>
+                            <input id="searchInput" class="form-control" placeholder="Cari..." type="text">
+                        </div>
+                    </div>
+                    <a href="{{ url_for('main.arsip_list') }}" class="btn btn-sm btn-outline-danger mb-0">Lihat Arsip</a>
+                </div>
+            </div>
+        </div>
+ 
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush" id="inventoryTable"> 
+                    <thead class="thead-light">
+                        <tr>
+                            <th style="width: 60px;">NO</th>
+                            <th>Nama Barang</th>
+                            <th>Kategori</th> 
+                            <th>Tanggal</th>
+                            <th>Stok</th>
+                            <th>Supplier</th>
+                            <th class="text-right">Aksi</th>
+                        </tr>
+                    </thead> 
+                    <tbody>
+                        {% for b in data %}
+                        <tr>
+                            <td>{{ loop.index }}</td> 
+                            <td class="nama-barang">{{ b.nama_barang }}</td>
+                            <td>{{ b.kategori.nama_kategori if b.kategori else "-" }}</td>
+                            <td>{{ b.tanggal_input.strftime('%d-%m-%Y') if b.tanggal_input else '27-12-2025' }}</td>
+                            
+                            <td class="{{ 'stok-rendah' if b.stok <= 5 else 'stok-normal' }}">
+                                {{ b.stok }}
+                            </td>
+
+                            <td>{{ b.supplier }}</td>
+                            <td class="text-right">
+                                {% if b.stok == 0 %}
+                                    <button type="button" class="btn btn-sm btn-warning"
+                                            onclick="konfirmasiArsip('{{ b.id }}', '{{ b.nama_barang }}')">
+                                        Arsipkan
+                                    </button>
+                                {% else %}
+                                    <span class="status-aktif"><i class="fas fa-check-circle"></i> Aktif</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card-footer border-0 bg-white">
+                <a href="{{ url_for('main.index') }}" class="btn btn-primary btn-sm">Kembali</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        let filter = this.value.toLowerCase();
+        let rows = document.querySelectorAll('#inventoryTable tbody tr');
+        rows.forEach(row => {
+            let rowText = row.innerText.toLowerCase();
+            row.style.display = rowText.includes(filter) ? '' : 'none';
+        });
+    });
+
+    function konfirmasiArsip(id, nama) {
+        Swal.fire({
+            title: 'Arsipkan?',
+            text: nama + " akan diarsip.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/arsipkan-barang/" + id;
+            }
+        })
+    }
+    </script>
+</body>
+</html>

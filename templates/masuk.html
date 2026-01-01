@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Tambah Barang - Gudang</title>
+  <link id="pagestyle" href="{{ url_for('static', filename='css/argon-dashboard.css') }}" rel="stylesheet" />
+</head>
+<body class="bg-gray-100">
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-lg-6 mx-auto mt-5">
+        <div class="card shadow">
+          <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+            <h6 class="text-white mb-0">Form Barang Masuk</h6>
+            <button type="button" class="btn btn-sm btn-outline-white mb-0" data-bs-toggle="modal" data-bs-target="#modalKategori">
+              + Kategori Baru
+            </button>
+          </div>
+          <div class="card-body">
+            <form action="{{ url_for('main.masuk') }}" method="POST">
+              
+              <div class="form-group">
+                <label>Pilih Kategori (ID)</label>
+                <select name="kategori_id" class="form-control" required>
+                  <option value="" disabled selected>-- Pilih Kategori --</option>
+                  {% for k in kategori %}
+                    <option value="{{ k.id }}">{{ k.id }}. {{ k.nama_kategori }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Nama Barang</label>
+                <input type="text" name="nama_barang" class="form-control" placeholder="Contoh: Beras Ramos 5kg" required>
+              </div>
+
+              <div class="form-group">
+                <label>Jumlah Stok</label>
+                <input type="number" name="stok" class="form-control" placeholder="0" required>
+              </div>
+
+              <div class="form-group">
+                <label>Supplier</label>
+                <input type="text" name="supplier" class="form-control" placeholder="Nama PT/Toko">
+              </div>
+
+              <button type="submit" class="btn btn-success w-100 mt-3">Simpan ke Gudang</button>
+              <a href="{{ url_for('main.index') }}" class="btn btn-link w-100 text-secondary">Batal</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalKategori" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Kategori Baru</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{{ url_for('main.tambah_kategori') }}" method="POST">
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Nama Kategori</label>
+              <input type="text" name="nama_baru" class="form-control" placeholder="Misal: Alat Elektronik" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            <button type="submit" class="btn btn-primary">Simpan Kategori</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

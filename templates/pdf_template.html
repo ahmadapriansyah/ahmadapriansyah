@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: sans-serif; font-size: 12px; }
+        .header { text-align: center; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #5e72e4; color: white; }
+        .badge-masuk { color: green; font-weight: bold; }
+        .badge-keluar { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>LAPORAN INVENTARIS GUDANG</h2>
+        <p>Dicetak pada: {{ now }}</p>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Tanggal</th>
+                <th>Nama Barang</th>
+                <th>Supplier</th>
+                <th>Status</th>
+                <th>Jumlah</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for l in data %}
+            <tr>
+                <td>{{ l.tanggal.strftime('%d/%m/%Y %H:%M') }}</td>
+                <td>{{ l.nama_barang }}</td>
+                <td>{{ l.supplier }}</td>
+                <td>
+                    <span class="{{ 'badge-keluar' if l.status == 'Keluar' else 'badge-masuk' }}">
+                        {{ l.status|upper }}
+                    </span>
+                </td>
+                <td>{{ l.jumlah }} Unit</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
