@@ -9,7 +9,7 @@ Aplikasi manajemen stok barang sederhana berbasis web yang dibuat menggunakan **
 * **Sistem Arsip**: Memindahkan barang yang stoknya habis ke daftar arsip.
 * **Notifikasi SweetAlert2**: Konfirmasi aksi yang modern dan interaktif.
 
-## 🛠️ Cara Instalasi (Buat Temen-temen)
+## 🛠️ Cara Instalasi (Buat Temen-temen.)
 
 Ikuti langkah berikut buat jalanin aplikasi ini di laptop kamu:
 
@@ -21,4 +21,5 @@ Ikuti langkah berikut buat jalanin aplikasi ini di laptop kamu:
    source venv/bin/activate  # Untuk Linux/Mac
 
    venv\Scripts\activate     # Untuk Windows
+
 
