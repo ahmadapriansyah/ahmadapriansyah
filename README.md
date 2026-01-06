@@ -22,4 +22,3 @@ Ikuti langkah berikut buat jalanin aplikasi ini di laptop kamu:
 
    venv\Scripts\activate     # Untuk Windows
 
-
