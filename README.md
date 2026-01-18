@@ -1,5 +1,5 @@
 # 📦 Aplikasi Inventaris Gudang (Open Source)
-
+ 
 Aplikasi manajemen stok barang sederhana berbasis web yang dibuat menggunakan **Python Flask** dan template **Argon Dashboard**. Aplikasi ini memudahkan pencatatan barang, pemantauan stok kritis, dan pengarsipan data.
 
 ## ✨ Fitur Utama
@@ -20,5 +20,6 @@ Ikuti langkah berikut buat jalanin aplikasi ini di laptop kamu:
    source venv/bin/activate  # Untuk Linux/Mac
 
    venv\Scripts\activate     # Untuk Windows
+
 
 
