@@ -3,7 +3,7 @@
 Aplikasi manajemen stok barang sederhana berbasis web yang dibuat menggunakan **Python Flask** dan template **Argon Dashboard**. Aplikasi ini memudahkan pencatatan barang, pemantauan stok kritis, dan pengarsipan data.
 
 ## ✨ Fitur Utama
-* **Tabel Inventaris**: Tampilan data barang yang rapi dan sejajar.
+* **Tabel Inventaris**: Tampilan data barang yang rapi dan sejajar. 
 * **Status Stok Otomatis**: Penanda warna merah untuk stok kritis (<= 5).
 * **Pencarian Cepat**: Filter barang secara real-time.
 * **Sistem Arsip**: Memindahkan barang yang stoknya habis ke daftar arsip.
@@ -20,6 +20,7 @@ Ikuti langkah berikut buat jalanin aplikasi ini di laptop kamu:
    source venv/bin/activate  # Untuk Linux/Mac
 
    venv\Scripts\activate     # Untuk Windows
+
 
 
 
