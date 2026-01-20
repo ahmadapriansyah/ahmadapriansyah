@@ -16,10 +16,11 @@ Ikuti langkah berikut buat jalanin aplikasi ini di laptop kamu:
 2. **Buka Terminal/CMD** di folder project.
 3. **Buat Virtual Environment** (Opsional tapi disarankan):
    ```bash
-   python -m venv venv
+   python -m venv venv 
    source venv/bin/activate  # Untuk Linux/Mac
 
    venv\Scripts\activate     # Untuk Windows
+
 
 
 
