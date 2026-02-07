@@ -20,8 +20,9 @@ Ikuti langkah berikut buat jalanin aplikasi ini di laptop kamu:
    source venv/bin/activate  # Untuk Linux/Mac
 
    venv\Scripts\activate     # Untuk Windows
-
  
+ 
+
 
 
 
