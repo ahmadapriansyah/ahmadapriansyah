@@ -12,7 +12,7 @@ Aplikasi manajemen stok barang sederhana berbasis web yang dibuat menggunakan **
 ## 🛠️ Cara Instalasi (Buat Temen-temen.)
 Ikuti langkah berikut buat jalanin aplikasi ini di laptop kamu:
  
-1. **Clone atau Download** repository ini.
+1. **Clone atau Download** repository ini. 
 2. **Buka Terminal/CMD** di folder project.
 3. **Buat Virtual Environment** (Opsional tapi disarankan):
    ```bash
@@ -22,6 +22,7 @@ Ikuti langkah berikut buat jalanin aplikasi ini di laptop kamu:
    venv\Scripts\activate     # Untuk Windows
  
  
+
 
 
 
