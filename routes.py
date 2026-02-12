@@ -1,4 +1,4 @@
-
+ 
 from pydoc import html
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session, make_response
 from app import db, mail
@@ -333,4 +333,5 @@ def download_laporan():
 def logout():
     session.clear()
     return redirect(url_for('main.sign_in'))
+
 
