@@ -1,4 +1,4 @@
-from app import db
+from app import db 
 from datetime import datetime, timedelta
 def waktu_wib():
     # Mengambil waktu UTC lalu ditambah 7 jam untuk WIB
@@ -38,4 +38,5 @@ class User(db.Model):
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     role = db.Column(db.String(20), default='user') # Nilainya: 'admin' atau 'user'
+
 
