@@ -1,4 +1,4 @@
-from flask import Flask, app
+from flask import Flask, app 
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
 
@@ -24,5 +24,6 @@ def create_app():
 
     from app.routes import main
     app.register_blueprint(main)
+
 
     return app
