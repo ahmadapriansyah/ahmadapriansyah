@@ -4,7 +4,7 @@ Aplikasi manajemen stok barang sederhana berbasis web yang dibuat menggunakan **
 
 ## ✨ Fitur Utama
 * **Tabel Inventaris**: Tampilan data barang yang rapi dan sejajar. 
-* **Status Stok Otomatis**: Penanda warna merah untuk stok kritis (<= 5).
+* **Status Stok Otomatis**: Penanda warna merah untuk stok kritis (<= 5). 
 * **Pencarian Cepat**: Filter barang secara real-time.
 * **Sistem Arsip**: Memindahkan barang yang stoknya habis ke daftar arsip.
 * **Notifikasi SweetAlert2**: Konfirmasi aksi yang modern dan interaktif.
@@ -22,6 +22,7 @@ Ikuti langkah berikut buat jalanin aplikasi ini di laptop kamu:
    venv\Scripts\activate     # Untuk Windows
  
  
+
 
 
 
