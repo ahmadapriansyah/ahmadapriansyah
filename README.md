@@ -18,10 +18,10 @@ Ikuti langkah berikut buat jalanin aplikasi ini di laptop kamu:
    ```bash
    python -m venv venv 
    source venv/bin/activate  # Untuk Linux/Mac
-
    venv\Scripts\activate     # Untuk Windows
  
  
+
 
 
 
